@@ -3,30 +3,54 @@ import { useParams } from "react-router-dom";
 import { exerciseOptions, fetchData } from "../utils/fetchData";
 import { Similar, ExerciseDetailCard } from "../components";
 
+interface ExerciseItem {
+  id: string;
+  name: string;
+  target: string;
+  bodyPart: string;
+  equipment: string;
+  gifUrl: string;
+}
+
 const ExerciseDetail = () => {
   const { bodyPart, equipment, exerciseName, exerciseTarget, exerciseGif } =
-    useParams();
-  const [similarExercisesByBodyPart, setSimilarExercisesByBodyPart] = useState(
-    []
-  );
-  const [similarExercisesByTarget, setSimilarExercisesByTarget] = useState([]);
-  const [similarExercisesByEquipment, setSimilarExercisesByEquipment] =
-    useState([]);
+    useParams<{
+      bodyPart: string;
+      equipment: string;
+      exerciseName: string;
+      exerciseTarget: string;
+      exerciseGif: string;
+    }>();
 
-  const formatString = (str) =>
+  const [similarExercisesByBodyPart, setSimilarExercisesByBodyPart] = useState<
+    ExerciseItem[]
+  >([]);
+  const [similarExercisesByTarget, setSimilarExercisesByTarget] = useState<
+    ExerciseItem[]
+  >([]);
+  const [similarExercisesByEquipment, setSimilarExercisesByEquipment] =
+    useState<ExerciseItem[]>([]);
+
+  const formatString = (str: string) =>
     str
       .replace(/-/g, " ")
       .split(" ")
       .map((word) => word[0].toUpperCase() + word.slice(1))
       .join(" ");
 
-  const decodedBodyPart = formatString(decodeURIComponent(bodyPart));
-  const decodedEquipment = formatString(decodeURIComponent(equipment));
-  const decodedExerciseName = formatString(decodeURIComponent(exerciseName));
-  const decodedExerciseTarget = formatString(
-    decodeURIComponent(exerciseTarget)
-  );
-  const decodedExerciseGif = decodeURIComponent(exerciseGif);
+  const decodedBodyPart = bodyPart
+    ? formatString(decodeURIComponent(bodyPart))
+    : "";
+  const decodedEquipment = equipment
+    ? formatString(decodeURIComponent(equipment))
+    : "";
+  const decodedExerciseName = exerciseName
+    ? formatString(decodeURIComponent(exerciseName))
+    : "";
+  const decodedExerciseTarget = exerciseTarget
+    ? formatString(decodeURIComponent(exerciseTarget))
+    : "";
+  const decodedExerciseGif = exerciseGif ? decodeURIComponent(exerciseGif) : "";
 
   useEffect(() => {
     const fetchExercises = async () => {

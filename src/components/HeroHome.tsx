@@ -3,13 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { FiSearch } from "react-icons/fi";
 import gym_image from "../assets/gym_image.png";
 
-const HeroHome = () => {
-  const [search, setSearch] = useState("");
+const HeroHome: React.FC = () => {
+  const [search, setSearch] = useState<string>("");
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     navigate(`/search/${search}`);
   };
 

@@ -4,6 +4,7 @@ import { bodyPartImages } from "../assets/body_part_images";
 import { equipmentImages } from "../assets/equipment_images";
 import { targetMuscleImages } from "../assets/target_muscle_images";
 import { HomeTeaser } from "../components";
+import React from "react";
 
 export default function Homepage() {
   return (

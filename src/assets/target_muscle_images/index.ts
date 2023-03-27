@@ -16,6 +16,15 @@ import traps from "./traps.png";
 import triceps from "./triceps.png";
 import upper_back from "./upper_back.png";
 
+type TargetMuscleImages = {
+  [key: string]: {
+    image: string;
+    title: string;
+
+    link: string;
+  };
+};
+
 const targetMuscleImages = {
   abductors: {
     image: abductors,
@@ -104,4 +113,4 @@ const targetMuscleImages = {
   },
 };
 
-export { targetMuscleImages };
+export { targetMuscleImages, TargetMuscleImages };

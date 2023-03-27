@@ -1,10 +1,20 @@
+import React from "react";
+
+interface Props {
+  decodedBodyPart: string;
+  decodedEquipment: string;
+  decodedExerciseName: string;
+  decodedExerciseTarget: string;
+  decodedExerciseGif: string;
+}
+
 export default function ExerciseDetailCard({
   decodedBodyPart,
   decodedEquipment,
   decodedExerciseName,
   decodedExerciseTarget,
   decodedExerciseGif,
-}) {
+}: Props) {
   return (
     <div className="">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-2 sm:py-24 lg:px-2">

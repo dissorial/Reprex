@@ -1,7 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Category = ({ imageObject, subpath }) => {
+interface Props {
+  imageObject: { title: string; image: string };
+  subpath: string;
+}
+
+const Category: React.FC<Props> = ({ imageObject, subpath }) => {
   return (
     <div className="text-center group cursor-pointer border p-10 m-4 rounded-xl hover:bg-gray-800">
       <Link to={`/${subpath}/${imageObject.title.toLowerCase()}`}>

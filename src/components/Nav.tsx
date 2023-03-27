@@ -1,27 +1,27 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import rapid_exe_logo from "../assets/rapid_exe_logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { Disclosure } from "@headlessui/react";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
-function classNames(...classes) {
+function classNames(...classes: (string | boolean | undefined)[]): string {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Nav() {
-  const [search, setSearch] = useState("");
+export default function Nav(): JSX.Element {
+  const [search, setSearch] = useState<string>("");
 
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     navigate(`/search/${search}`);
   };
 
-  const active = "bg-gray-700 text-white";
-  const inactive = "text-gray-300 hover:bg-gray-800 hover:text-white";
-  const [activePage, setActivePage] = useState("Home");
+  const active: string = "bg-gray-700 text-white";
+  const inactive: string = "text-gray-300 hover:bg-gray-800 hover:text-white";
+  const [activePage, setActivePage] = useState<string>("Home");
 
   return (
     <Disclosure as="nav" className="bg-gray-900 border-b border-gray-700">

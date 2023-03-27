@@ -1,7 +1,12 @@
 import { ChevronRightIcon, HomeIcon } from "@heroicons/react/20/solid";
+import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Breadcrumbs({ navigation }) {
+interface Props {
+  navigation: { name: string; href: string; current: boolean }[];
+}
+
+export default function Breadcrumbs({ navigation }: Props) {
   return (
     <nav className="flex" aria-label="Breadcrumb">
       <ol role="list" className="flex items-center space-x-4  flex-wrap">

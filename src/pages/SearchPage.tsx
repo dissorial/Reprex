@@ -4,10 +4,20 @@ import { useParams, Link } from "react-router-dom";
 import { Breadcrumbs } from "../components";
 import ReactFreezeframe from "react-freezeframe";
 
-const SearchPage = () => {
-  const { searchQuery } = useParams();
-  const [allExercises, setAllExercises] = useState([]);
-  const [exercisesPerPage] = useState(20);
+type Exercise = {
+  name: string;
+  target: string;
+  equipment: string;
+  bodyPart: string;
+  gifUrl: string;
+  id: string;
+};
+
+const SearchPage: React.FC = () => {
+  const { searchQuery } = useParams<{ searchQuery: string }>();
+  const [allExercises, setAllExercises] = useState<Exercise[]>([]);
+  const [exercisesPerPage] = useState<number>(20);
+  const [currentPage, setCurrentPage] = useState<number>(1);
 
   const navigation = [{ name: "Search", href: "", current: true }];
   useEffect(() => {
@@ -22,15 +32,15 @@ const SearchPage = () => {
     fetchExercises();
   }, []);
 
-  const capitalize = (string) =>
+  const capitalize = (string: string) =>
     string.slice(0, 1).toUpperCase() + string.slice(1);
 
   const searchedExercises = allExercises.filter(
     (item) =>
-      item.name.toLowerCase().includes(searchQuery) ||
-      item.target.toLowerCase().includes(searchQuery) ||
-      item.equipment.toLowerCase().includes(searchQuery) ||
-      item.bodyPart.toLowerCase().includes(searchQuery)
+      item.name.toLowerCase().includes(searchQuery ? searchQuery : "") ||
+      item.target.toLowerCase().includes(searchQuery ? searchQuery : "") ||
+      item.equipment.toLowerCase().includes(searchQuery ? searchQuery : "") ||
+      item.bodyPart.toLowerCase().includes(searchQuery ? searchQuery : "")
   );
 
   const indexOfLastExercise = currentPage * exercisesPerPage;

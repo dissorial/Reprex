@@ -17,6 +17,14 @@ import rope from "./rope.png";
 import stability_ball from "./stability_ball.png";
 import weighted from "./weighted.png";
 
+type EquipmentImages = {
+  [key: string]: {
+    image: string;
+    title: string;
+    link: string;
+  };
+};
+
 const equipmentImages = {
   band: {
     image: band,
@@ -110,4 +118,4 @@ const equipmentImages = {
   },
 };
 
-export { equipmentImages };
+export { equipmentImages, EquipmentImages };

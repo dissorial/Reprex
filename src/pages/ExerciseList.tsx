@@ -3,11 +3,20 @@ import { useParams } from "react-router-dom";
 import { exerciseOptions, fetchData } from "../utils/fetchData";
 import { ExerciseCard, Breadcrumbs, Pagination } from "../components";
 
+type NavigationDictionary = {
+  equipment: string;
+  bodyPart: string;
+  target: string;
+};
+
 export default function ExerciseList() {
-  const { querytype, attribute } = useParams();
-  const [exercises, setExercises] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [exercisesPerPage] = useState(12);
+  const { querytype, attribute } = useParams<{
+    querytype: string;
+    attribute: string;
+  }>();
+  const [exercises, setExercises] = useState<Array<any>>([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [exercisesPerPage] = useState<number>(12);
 
   useEffect(() => {
     const fetchExercises = async () => {
@@ -21,17 +30,19 @@ export default function ExerciseList() {
     fetchExercises();
   }, []);
 
-  const indexOfLastExercise = currentPage * exercisesPerPage;
-  const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
-  const currentExercises =
-    exercises && exercises.slice(indexOfFirstExercise, indexOfLastExercise);
+  const indexOfLastExercise: number = currentPage * exercisesPerPage;
+  const indexOfFirstExercise: number = indexOfLastExercise - exercisesPerPage;
+  const currentExercises: Array<any> = exercises.slice(
+    indexOfFirstExercise,
+    indexOfLastExercise
+  );
 
-  const handlePageChange = (pageNumber) => {
+  const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
     window.scrollTo(0, 0);
   };
 
-  const capitalize = (string) =>
+  const capitalize = (string: string) =>
     string.slice(0, 1).toUpperCase() + string.slice(1);
 
   const navigationDictionary = {
@@ -42,12 +53,20 @@ export default function ExerciseList() {
 
   const navigation = [
     {
-      name: `${navigationDictionary[querytype]}`,
+      name:
+        querytype && navigationDictionary.hasOwnProperty(querytype)
+          ? navigationDictionary[querytype as keyof NavigationDictionary]
+          : "",
       href: `/${querytype}`,
       current: false,
     },
-    { name: `${capitalize(attribute)}`, href: "", current: true },
+    {
+      name: attribute ? `${capitalize(attribute)}` : "",
+      href: "",
+      current: true,
+    },
   ];
+
   return (
     <div className="relative isolate overflow-hidden bg-gray-900 py-52">
       <svg
@@ -113,7 +132,7 @@ export default function ExerciseList() {
           <div className="mx-auto max-w-7xl px-6">
             <div className="mx-auto max-w-2xl lg:mx-0">
               <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl">
-                {capitalize(attribute)} exercises
+                {attribute ? capitalize(attribute) : ""} exercises
               </h2>
               <p className="mt-6 text-lg leading-8 text-gray-300">
                 Click on any exercise card to view more details about the
@@ -135,7 +154,7 @@ export default function ExerciseList() {
                 name={name}
                 target={target}
                 gifUrl={gifUrl}
-                querytype={querytype}
+                querytype={querytype ? querytype : ""}
               />
             )
           )}

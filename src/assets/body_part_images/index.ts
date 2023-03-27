@@ -9,6 +9,14 @@ import upper_arms from "./upper_arms.png";
 import upper_legs from "./upper_legs.png";
 import waist from "./waist.png";
 
+type BodyPartImages = {
+  [key: string]: {
+    image: string;
+    title: string;
+    link: string;
+  };
+};
+
 const bodyPartImages = {
   back: {
     image: back,
@@ -62,4 +70,4 @@ const bodyPartImages = {
   },
 };
 
-export { bodyPartImages };
+export { bodyPartImages, BodyPartImages };

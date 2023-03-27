@@ -1,8 +1,23 @@
 import React from "react";
 import ReactFreezeframe from "react-freezeframe";
 
-const Similar = ({ title, exercises }) => {
-  const capitalize = (string) =>
+interface ExerciseItem {
+  id: string;
+  name: string;
+  target: string;
+  bodyPart: string;
+  equipment: string;
+  gifUrl: string;
+}
+
+const Similar = ({
+  title,
+  exercises,
+}: {
+  title: string;
+  exercises: ExerciseItem[];
+}) => {
+  const capitalize = (string: string) =>
     string.slice(0, 1).toUpperCase() + string.slice(1);
   return (
     <div className="mx-auto max-w-7xl overflow-hidden px-2 sm:px-2 py-8">

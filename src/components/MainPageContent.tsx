@@ -1,18 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Breadcrumbs } from ".";
+import Breadcrumbs from "./Breadcrumbs";
 
-export default function MainPageContent({ data, title, subpath }) {
-  const navigationDictionary = [
-    {
-      equipment: "Equipment",
-      bodyPart: "Body part",
-      target: "Target muscles",
-    },
-  ];
+interface Props {
+  data: { [key: string]: { title: string; image: string } };
+  title: string;
+  subpath: string;
+}
+
+interface NavigationDictionary {
+  equipment: string;
+  bodyPart: string;
+  target: string;
+}
+
+export default function MainPageContent({ data, title, subpath }: Props) {
+  const navigationDictionary: NavigationDictionary = {
+    equipment: "Equipment",
+    bodyPart: "Body part",
+    target: "Target muscles",
+  };
   const navigation = [
     {
-      name: `${navigationDictionary[0][subpath]}`,
+      name: `${navigationDictionary[subpath as keyof NavigationDictionary]}`,
       href: `/${subpath}`,
       current: false,
     },

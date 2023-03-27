@@ -2,7 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import ReactFreezeframe from "react-freezeframe";
 
-const ExerciseCard = ({
+interface Props {
+  id: number;
+  bodyPart: string;
+  equipment: string;
+  name: string;
+  target: string;
+  gifUrl: string;
+  querytype: string;
+}
+
+const ExerciseCard: React.FC<Props> = ({
   id,
   bodyPart,
   equipment,
@@ -11,9 +21,10 @@ const ExerciseCard = ({
   gifUrl,
   querytype,
 }) => {
-  const capitalize = (string) =>
+  const capitalize = (string: string) =>
     string.slice(0, 1).toUpperCase() + string.slice(1);
-  const hyphenate = (string) => string.split(" ").join("-").toLowerCase();
+  const hyphenate = (string: string) =>
+    string.split(" ").join("-").toLowerCase();
 
   const exerciseName = encodeURIComponent(hyphenate(name));
   const exerciseTarget = encodeURIComponent(hyphenate(target));

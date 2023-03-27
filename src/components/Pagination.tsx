@@ -1,6 +1,13 @@
 import React from "react";
 
-const Pagination = ({
+interface Props {
+  exercisesPerPage: number;
+  totalExercises: number;
+  currentPage: number;
+  handlePageChange: (pageNumber: number) => void;
+}
+
+const Pagination: React.FC<Props> = ({
   exercisesPerPage,
   totalExercises,
   currentPage,
