@@ -8,8 +8,8 @@ The project makes use of [ExerciseDB API](https://rapidapi.com/justin-WFnsXH_t6/
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-![Image 1](public/images/reprex-1.webp)
+![Image 1](public/images/reprex-1.png)
 
-![Image 2](public/images/reprex-01-project.webp)
+![Image 2](public/images/reprex-01-project.png)
 
-![Image 3](public/images/reprex-03-project.webp)
+![Image 3](public/images/reprex-03-project.png)
